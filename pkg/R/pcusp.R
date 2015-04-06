@@ -4,9 +4,10 @@ Vectorize(function(x) integrate(dcusp, -Inf, x, alpha = alpha,
     beta = beta)$value)(y)
 
 `pcusp` <- # new pcusp the utilizes the c-code underlying cusp.nc because the older pcusp uses integrate from within R
-  function (x, alpha, beta, subdivisions = 100, rel.tol = .Machine$double.eps^0.25, 
+  function (y, alpha, beta, subdivisions = 100, rel.tol = .Machine$double.eps^0.25, 
             abs.tol = rel.tol, stop.on.error = TRUE, aux = NULL, keep.order = TRUE) 
   {
+    x = y
     limit <- as.integer(subdivisions)
     if (limit < 1 || (abs.tol <= 0 && rel.tol < max(50 * .Machine$double.eps, 
                                                     5e-29))) 

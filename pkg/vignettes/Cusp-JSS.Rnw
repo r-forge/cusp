@@ -3,7 +3,9 @@
 
 
 
-\usepackage{thumbpdf,amsmath}
+\usepackage{amsmath} % thumbpdf package is used in the JSS template but causes errors as a vignette
+
+\newcommand{\Sconcordance}[1]{} % suppress compilation error (a file Cusp-JSS-concordance.tex is generated using this command; I don't see it's purpose)
 
 \renewcommand{\tilde}{$\mathtt{\sim}$}
 \newcommand{\Exp}[1]{\mathrm{e}^{#1}}
@@ -69,6 +71,7 @@ Of the seven elementary catastrophes in catastrophe theory, the ``cusp'' model i
 
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 
 
@@ -88,7 +91,8 @@ In this paper we present an add-on package for the statistical computing environ
 
 Consider a (deterministic) dynamical system that obeys equations of motion of the form 
 \begin{equation} \label{eq:dynsys}
-	{\partial y \over \partial t} = - {\partial V(y; c) \over \partial y},
+  \frac{\partial y}{\partial t} = - \frac{\partial V(y; c)}{\partial y},
+	%{\partial y \over \partial t} = - {\partial V(y; c) \over \partial y},
 	\qquad y\in R^k, c\in R^p.
 \end{equation} 
 In this equation $y(t)$ represents the system's state variable(s), and $c$ represents one or multiple (control) parameter(s) who's value(s) determine the specific structure of the system. If the system state $y$ is at a point where $\partial V(y;c) / dx = 0$ the system is in equilibrium. If the system is at a non-equilibrium point, the system will move towards an equilibrium point where the function $V(y;c)$ acquires a minimum with respect to $y$. These equilibrium points are stable equilibrium points because the system will return to such a point after a small perturbation to the system's state. Equilibrium points that correspond to maxima of $V(y;c)$ are unstable equilibrium points because a perturbation of the system's state will cause the system to move away from the equilibrium point towards a stable equilibrium point. In the physical world no system is fully isolated and there are always forces impinging on a system. It is therefore highly unlikely to encounter a system in an unstable equilibrium state. Equilibrium points that correspond neither to maxima nor to minima of $V(y;c)$, at which the Hessian matrix $({\partial^2V(y) / \partial y_i\partial  y_j})$ has eigenvalues equal to zero, are called degenerate equilibrium points, and these are the points at which a system can give rise to unexpected bifurcations in its equilibrium states when the control variables of the system are changed. 
@@ -99,7 +103,8 @@ Catastrophe theory \cite{Thom:1973p4570,Thom:1975p4571,Gilmore:1993p4394,Poston:
 
 In the biological and behavioral sciences, the so-called cusp catastrophe model has been applied most frequently, as it is the simplest of catastrophe models that exhibits discontinuous transitions in equilibrium states as control parameters are varied. The canonical form of the potential function for the cusp catastrophe is
 \begin{equation}\label{eq:cusppotential}
-	-\,V(y;\alpha, \beta) = \alpha y + {1\over 2}\beta\,y^2 - {1\over 4}\,y^4.
+	%-\,V(y;\alpha, \beta) = \alpha y + {1\over 2}\beta\,y^2 - {1\over 4}\,y^4.
+  -\,V(y;\alpha, \beta) = \alpha y + \frac{1}{2}\beta\,y^2 - \frac{1}{4}\,y^4.
 \end{equation}
 Its equilibrium points, as a function of the control parameters $\alpha$ and $\beta$, are solutions to the equation 
 \begin{equation}\label{eq:cuspeq}
@@ -135,9 +140,9 @@ A difficulty that arises when constructing empirically testable catastrophe mode
 \label{fig:cuspdens}
 \end{center}
 \end{figure}
-To bridge the gap between determinism of catastrophe theory and applications in stochastic environments, Loren Cobb and his colleagues \cite{Cobb:1978p,Cobb:1980p4118,Cobb:1980p4593,Cobb:1985p358} proposed to turn catastrophe theory into a stochastic catastrophe theory by adding to equation \eqref{eq:dynsys} a (white noise) Wiener process, $dW(t)$, with variance $\sigma^2$, and to treat the resulting equation as a stochastic differential equation (SDE): $$ dY = {\partial V(Y; \alpha,\beta)\over \partial Y}\,dt + dW(t). $$ This SDE is then associated with a probability density that describes the distribution of the system's states on any moment in time, which may be expressed as
+To bridge the gap between determinism of catastrophe theory and applications in stochastic environments, Loren Cobb and his colleagues \cite{Cobb:1978p,Cobb:1980p4118,Cobb:1980p4593,Cobb:1985p358} proposed to turn catastrophe theory into a stochastic catastrophe theory by adding to equation \eqref{eq:dynsys} a (white noise) Wiener process, $dW(t)$, with variance $\sigma^2$, and to treat the resulting equation as a stochastic differential equation (SDE): $$ dY = \frac{\partial V(Y; \alpha,\beta)}{\partial Y}\,dt + dW(t). $$ This SDE is then associated with a probability density that describes the distribution of the system's states on any moment in time, which may be expressed as
 \begin{equation}\label{eq:cuspdens}
-	f(y) = {\psi \over \sigma^2}\exp\bigg[{\alpha\,(y-\lambda) + {1\over 2}\beta\,(y-\lambda)^2 - {1\over 4}(y-\lambda)^4\over \sigma^2}\bigg].
+	f(y) = \frac{\psi}{\sigma^2}\exp\bigg[\frac{\alpha\,(y-\lambda) + \frac{1}{2}\beta\,(y-\lambda)^2 - \frac{1}{4}(y-\lambda)^4}{\sigma^2}\bigg].
 \end{equation}
 Here $\psi$ is a normalizing constant, and $\lambda$ merely determines the origin of scale of the state variable. In this stochastic context $\beta$ is called the bifurcation factor, as it determines the number of modes of the density function, while $\alpha$ is called ``asymmetry'' factor as it determines the direction of the skew of the density (the density is symmetric if $\alpha=0$ and becomes left or right skewed depending on the sign of $\alpha$; \citeNP{Cobb:1980p4118}). The function is implemented in the \proglang{R} package described below as \code{dcusp()}. Figure~\ref{fig:cuspdens} displays the density for different regions of the control plane. 
  
@@ -286,7 +291,7 @@ is modeled by the density \eqref{eq:cuspdens}, with $\alpha\mapsto\alpha_i$, $\b
 If we collect the observed dependent variables in the $n\times (p+1)$ matrix ${\bf Y} = [{\bf 1}_n| (Y_{ij})]$, the independent variables in the $n\times (q+1)$ matrix ${\bf X} = [{\bf 1}_n| (X_{ik})]$, where ${\bf 1}_n$ is an $n$-vector whose entries all equal $1$, and furthermore collect the coefficients in the vectors ${\bf w} = (w_0, w_1, \ldots, w_p)'$, ${\bf a}=(a_0, a_1, \ldots, a_q)'$, and ${\bf b} = (b_0, b_1, \ldots, b_q)'$, where $'$ denotes transpose, we can write these equations succinctly as $${\bf y} = {\bf Yw},\quad {\bs\alpha} = {\bf Xa},\quad {\bs\beta} = {\bf Xb},$$ where ${\bf y} = (y_1, \ldots, y_n)'$, ${\bs\alpha}=(\alpha_1, \ldots, \alpha_n)'$, and ${\bs\beta} = (\beta_1, \ldots, \beta_n)'.$
 Therefore, the negative log-likelihood for a sample of observed values $(x_{i1},\ldots,x_{iq},y_{i1},\ldots,y_{ip})$, $i=1,\ldots, n,$ is
 \begin{equation}\label{eq:likelihood}
-	L({\bf a}, {\bf b}, {\bf w}; {\bf Y}, {\bf X}) = \sum_{i=1}^n\log\psi_i - \sum_{i=0}^n\big[\alpha_i\,y_i+{1\over 2}\beta_i\, y_i^2 - {1\over 4}y_i^4\big].
+	L({\bf a}, {\bf b}, {\bf w}; {\bf Y}, {\bf X}) = \sum_{i=1}^n\log\psi_i - \sum_{i=0}^n\big[\alpha_i\,y_i+\frac{1}{2}\beta_i\, y_i^2 - \frac{1}{4}y_i^4\big].
 \end{equation}
 Note that compared to equation \eqref{eq:cuspdens}, here we have absorbed the location and scale parameters $\lambda$ and $\sigma$ into the coefficients $w_0,w_1,\ldots, w_p$. It should be noted furthermore that there is an ambiguity in the equations above: The signs of the $a_j$ and $w_j$ may all be switched without affecting the value negative log-likelihood function. This is the case, because the quadratic and quartic terms in $y_i$ do not determine the sign of $y_i$ (i.e., $y_i^2=(-y_i)^2$ and $y_i^4 = (-y_i)^4$), while for the linear term $\alpha_i y_i = (-\alpha_i)(-y_i)$ holds. Thus the sign of $y_i$ (and hence, the sign for the $w_j$'s) can be switched without affecting the value of \eqref{eq:likelihood} if the sign of $\alpha_i$, and hence the signs of the $a_j$'s, is switched as well. The estimates of $a_1,\ldots, a_q, w_1,\ldots, w_p$ are therefore identifiable up to a change in sign. 
 
@@ -323,7 +328,7 @@ First of all, Cobb %\citeauthor{Cobb:1998p4948} %
 ; see also \citeNP{Stewart:1983p4517,Hartelman:1997p4503} % 
 have suggested a pseudo-$R^2$ as a measure of explained variance defined by
 \begin{equation}
-	1 - {\text{error variance} \over \mathrm{Var}(y)}.
+	1 - \frac{\text{error variance}}{\mathrm{Var}(y)}.
 \end{equation}
 This is clearly inspired by the familiar relation between the squared (multiple) correlation coefficient and the ``explained variance'' from ordinary regression. However, the term ``error variance'' needs to be defined, which is not trivial for the cusp catastrophe model.  
 
@@ -357,7 +362,7 @@ Instead of the 10\% guideline, \citeA{Hartelman:1997p4503} proposes to require t
 For illustration purposes, we provide three example analyses with the package. The first two examples entail data that have been analyzed with cusp catastrophe methods before and have been published elsewhere. 
 
 
-\subsubsection{Example I}
+\subsection{Example I}
 The first example is taken from \citeA{vanderMaas:2003p626}, and concerns attitudinal response transitions with respect to the statement ``The government must force companies to let their workers benefit from the profit as much as the shareholders do". Some 3000 Dutch respondents indicated their level of agreement with this statement on a 5 point scale (1 = {\em totally agree}, 5 = {\em totally disagree}). As a normal factor political orientation (measures on a 10 point scale from 1 = {\em left wing} to 10 = {\em right wing}) was used. As a bifurcation factor the total score on a 12 item ``political involvement'' scale was used. The theoretical social psychological details are discussed in \cite{vanderMaas:2003p626}. The data thus consist of a table with three columns: \code{Orient}, \code{Involv}, and \code{Attitude}. 
 
 

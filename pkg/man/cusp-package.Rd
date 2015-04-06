@@ -56,6 +56,7 @@ fit <- cusp(y ~ x, alpha ~ 1, beta ~ 1)
 print(fit)
 
 # example with regressors
+\dontrun{
 x1 = runif(150)
 x2 = runif(150)
 z = Vectorize(rcusp)(1, 4*x1-2, 4*x2-1)
@@ -63,7 +64,6 @@ data <- data.frame(x1, x2, z)
 fit <- cusp(y ~ z, alpha ~ x1+x2, beta ~ x1+x2, data)
 print(fit)
 summary(fit)
-\dontrun{
 plot(fit)
 cusp3d(fit)
 }
@@ -75,6 +75,7 @@ while(!fit$OK) # refit if necessary until convergence is OK
     fit <- cusp(y ~ z, alpha ~ x1+x2, beta ~ x1+x2, data, start=rnorm(npar))
 }
 
+\dontrun{
 # example 1 from paper
 data(attitudes)
 data(attitudeStartingValues)
@@ -84,4 +85,5 @@ fit.attitudes <- cusp(y ~ Attitude, alpha ~ Orient + Involv, beta ~ Involv,
 summary(fit.attitudes)
 plot(fit.attitudes)
 cusp3d(fit.attitudes, B = 0.75, Y = 1.35, theta = 170, phi = 30, Yfloor = -9)
+}
 }

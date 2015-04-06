@@ -4,7 +4,7 @@
 \geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
 %\geometry{landscape}                % Activate for for rotated page geometry
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{thumbpdf,amsmath}
+\usepackage{amsmath}              % thumbpdf should be used but this generates an error in vignette compilation
 \usepackage{graphicx,hyperref}
 \usepackage{amssymb,amscd,url}
 \usepackage{hyperref}
@@ -15,7 +15,7 @@
 
 
 
-
+%\newcommand{\Sconcordance}[1]{}
 
 \newcommand{\code}[1]{{\tt #1}}
 \newcommand{\pkg}[1]{{\bf #1}}
@@ -29,6 +29,7 @@
 %\date{}			% Activate to display a given date or no date
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 \maketitle
 \section{Introduction}
 
@@ -101,7 +102,7 @@ $$
 $$
 Note that this is quite different from Cobb's conceptualization of the stochastic cusp catastrophe, in which
 $$ 
-	y_i \sim \Psi\,e^{\alpha_i y + \beta_iy^2 - {1\over 4}y^4}.
+	y_i \sim \Psi\,e^{\alpha_i y + \beta_iy^2 - \frac{1}{4}y^4}.
 $$
 where the right hand side is the state density of the {\em stochastic} differential equation \begin{equation}\label{eq:cobbsdemodel} dY = (\alpha_i + \beta_i z - z^3)dt + dW(t), \end{equation} where $W(t)$ is a Wiener process.
 
@@ -258,8 +259,9 @@ Here \code{g} is a grid of points on the control surface, and \code{cusp.extrema
 
 It instructive to see a 3D plot of the generated data points generated in this way
 <<label=3Dscatter>>=
-if(require(onion)){
-	p3d(a, b, y, theta=200, phi=10, zlim=c(-4,4)); # try require(rgl); rgl.points(a, b, y) instead
+if(require(plot3D)){
+	scatter3D(a, b, y, theta=200, phi=10, zlim=c(-4,4)); 
+  # you can try require(rgl); rgl.points(a, b, y) instead
 }
 @
 \begin{figure}
