@@ -1,7 +1,7 @@
 % \VignetteIndexEntry{cusp package hands on tutorial examples}
 \documentclass[11pt]{article}
 \usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
 %\geometry{landscape}                % Activate for for rotated page geometry
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{amsmath}              % thumbpdf should be used but this generates an error in vignette compilation
@@ -53,13 +53,13 @@ library(cusp)
 
 
 
-We analyze three data sets that were obtained with three different instances of a Zeeman catastrophe machine. This device consists of a wheel is tethered by an elastic chord to a fixed point. For sake of reference let the \emph{central axis} be defined as the axis parallel to the line between the fixed point and the center of the wheel. Another elastic is also attached to the wheel on one end, while the other end is moved about in the \sQuote{control plane} area opposite to the fixed point. The shortest distance between the strap point on the wheel and the central axis is recorded as a function of the position in the control plane. (In the original machine the angle between this axis and the line through the wheel center and the strap point is used.) See \href{http://www.math.sunysb.edu/~tony/whatsnew/column/catastrophe-0600/cusp4.html}{http://www.math.sunysb.edu/~tony/whatsnew/column/catastrophe-0600/cusp4.html} for a vivid demonstration. The behavior of the Zeeman catastrophe machine is archetypal for the deterministic Cusp Catastrophe. 
+We analyze three data sets that were obtained with three different instances of a Zeeman catastrophe machine. This device consists of a wheel is tethered by an elastic chord to a fixed point. For sake of reference let the \emph{central axis} be defined as the axis parallel to the line between the fixed point and the center of the wheel. Another elastic is also attached to the wheel on one end, while the other end is moved about in the \sQuote{control plane} area opposite to the fixed point. The shortest distance between the strap point on the wheel and the central axis is recorded as a function of the position in the control plane. (In the original machine the angle between this axis and the line through the wheel center and the strap point is used.) See \href{http://www.math.sunysb.edu/~tony/whatsnew/column/catastrophe-0600/cusp4.html}{http://www.math.sunysb.edu/~tony/whatsnew/column/catastrophe-0600/cusp4.html} for a vivid demonstration. The behavior of the Zeeman catastrophe machine is archetypal for the deterministic Cusp Catastrophe.
 
 
 <<label=figZeemanMachineSchema,echo=FALSE>>=
 plot.new()
 plot.window(c(-1.05,1.05),c(-1.1,1))
-rect(-.25,-1,.25,-.5, col=rgb(.3,.6,.5,.1),border=NA) 
+rect(-.25,-1,.25,-.5, col=rgb(.3,.6,.5,.1),border=NA)
 text(.25,-.75, "control plane", pos=4, offset=1)
 arrows(-.25,-1,-.25,-.75, len=.1, lwd=.5)            # y arrow
 text(-.25,-.875,"y",pos=2)
@@ -94,14 +94,14 @@ The data sets were obtained from 3 different physical instances of this machine,
 
 Measurements from this machine will be made with measurement errors, e.g., due to parallax, friction, writing mistakes etc. The measurements will fit the following model, the we will dub the measurement error model,
 \begin{equation}\label{eq:measerrmodel}
-	y_i = z_i + \epsilon_i, 
+	y_i = z_i + \epsilon_i,
 \end{equation}
 where $\epsilon_i$ is a zero mean random variable, e.g., $\epsilon \sim N(0,\sigma^2)$ for some $\sigma^2$, and $z_i$ is one of the extremal real roots of the cusp catastrophe equation
 $$
 	\alpha_i + \beta_i z - z^3 = 0.
 $$
 Note that this is quite different from Cobb's conceptualization of the stochastic cusp catastrophe, in which
-$$ 
+$$
 	y_i \sim \Psi\,e^{\alpha_i y + \beta_iy^2 - \frac{1}{4}y^4}.
 $$
 where the right hand side is the state density of the {\em stochastic} differential equation \begin{equation}\label{eq:cobbsdemodel} dY = (\alpha_i + \beta_i z - z^3)dt + dW(t), \end{equation} where $W(t)$ is a Wiener process.
@@ -138,11 +138,11 @@ Now all the regression coefficients `are significant'. If we turn attention to t
 fit1.3 = cusp(y~z-1, alpha~x, beta~y, zeeman1)
 (sf1.3 <- summary(fit1.3, logist=TRUE))
 @
-The AIC, AICc and BIC are now all smaller than both the first and the second model, and all intercept coefficients `are significant'. 
+The AIC, AICc and BIC are now all smaller than both the first and the second model, and all intercept coefficients `are significant'.
 
 In the call to \code{summary}, this time  we have set the optional parameter \code{logist} to \code{TRUE}, so that also the logistic model is fitted for a more critical test of the cusp model (see the main vignette and \code{help(cusp.logist)} for details). The information criteria all indicate that the cusp model is to be preferred over the logistic model, even though the \emph{pseudo-$R^2$} is larger for the logistic model (\Sexpr{round(sf1.3$r2log.r.squared,4)}) than for the cusp model (\Sexpr{round(sf1.3$r2cusp.r.squared,4)}). (See for a discussion of the \emph{pseudo-}$R^2$ the main vignette.)
 
-Figure \ref{fig:fit2zeeman1} displays a diagnostic plot of the last model that was generated with 
+Figure \ref{fig:fit2zeeman1} displays a diagnostic plot of the last model that was generated with
 <<label=figfit3zeeman1>>=
 plot(fit1.3)
 @
@@ -171,7 +171,7 @@ Again, the intercept coefficients \code{a[(Intercept)]} and \code{w[(Intercept)]
 fit2.2 = cusp(y~z-1, alpha~x-1, beta~y, zeeman2)
 summary(fit2.2)
 @
-The AIC of this reduced model (\Sexpr{round(fit2.2$aic,4)}) is indeed smaller than the AIC of the previous model (\Sexpr{round(fit2.1$aic,4)}). If for comparison with the model selected for \code{zeeman1} we include \code{a[(Intercept)]} again, this barely reduces the negative log-likelihood, while increasing the AIC. More importantly this coefficient is estimated to be zero. 
+The AIC of this reduced model (\Sexpr{round(fit2.2$aic,4)}) is indeed smaller than the AIC of the previous model (\Sexpr{round(fit2.1$aic,4)}). If for comparison with the model selected for \code{zeeman1} we include \code{a[(Intercept)]} again, this barely reduces the negative log-likelihood, while increasing the AIC. More importantly this coefficient is estimated to be zero.
 <<>>=
 fit2.3 = cusp(y~z-1, alpha~x, beta~y, zeeman2)
 fit2.3
@@ -179,7 +179,7 @@ fit2.3
 
 \subsection{\code{zeeman3}}
 
-We do the same analysis for \code{zeeman3}. 
+We do the same analysis for \code{zeeman3}.
 <<>>=
 data(zeeman3)
 fit3.1 <- cusp(y~z, alpha~x+y, beta~x+y, zeeman3)
@@ -230,6 +230,7 @@ cusp(y~y-1, alpha~1, beta~1)
 
 If the $\alpha$'s and $\beta$'s are different, e.g., depending on predictive variables, they can be generated for example with the statements
 <<>>=
+set.seed(423)
 x1 = runif(150)
 x2 = runif(150)
 a = c(-2, 4)
@@ -239,7 +240,7 @@ beta  = b[1] + b[2]*x2
 z = Vectorize(rcusp)(1, alpha, beta)
 data <- data.frame(x1, x2, z)
 @
-Estimating the coefficients in \code{a} and \code{b} can then be carried out with, e.g., 
+Estimating the coefficients in \code{a} and \code{b} can then be carried out with, e.g.,
 <<>>=
 fit <- cusp(y ~ z, alpha ~ x1+x2, beta ~ x1+x2, data)
 @
@@ -251,7 +252,7 @@ We can generate data in accordance with the measurement error model in equation 
 <<generate-measurement-error>>=
 set.seed(423)
 g = expand.grid(seq(-3,3,len=15), seq(-3,3,len=15))
-a = g[,1]; b = g[,2]; idx=cbind(sample(c(1,3),length(a),TRUE), seq(along=a)); 
+a = g[,1]; b = g[,2]; idx=cbind(sample(c(1,3),length(a),TRUE), seq(along=a));
 s = Vectorize(cusp.extrema)(a,b)[idx]
 y = s + rnorm(length(s),,.3)
 @
@@ -260,7 +261,7 @@ Here \code{g} is a grid of points on the control surface, and \code{cusp.extrema
 It instructive to see a 3D plot of the generated data points generated in this way
 <<label=3Dscatter>>=
 if(require(plot3D)){
-	scatter3D(a, b, y, theta=200, phi=10, zlim=c(-4,4)); 
+	scatter3D(a, b, y, theta=200, phi=10, zlim=c(-4,4));
   # you can try require(rgl); rgl.points(a, b, y) instead
 }
 @
@@ -281,5 +282,5 @@ summary(fit)
 @
 
 
-\end{document}  
+\end{document}
 
