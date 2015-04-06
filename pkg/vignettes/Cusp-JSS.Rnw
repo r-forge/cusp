@@ -57,7 +57,7 @@ Of the seven elementary catastrophes in catastrophe theory, the ``cusp'' model i
     University of Amsterdam\\
 	1018KP Amsterdam, the Netherlands\\
 	E-mail: \email{rgrasman@uva.nl}\\
-	URL: \url{http://users.fmg.uva.nl/rgrasman}\\
+	URL: \url{http://raoul.socsci.uva.nl/}\\
 }
 %% It is also possible to add a telephone and fax number
 %% before the e-mail in the following format:
@@ -114,7 +114,7 @@ This equation has one solution if $\delta = 27\alpha - 4\beta^3$, which is known
 
 \begin{figure}[tbp]
 \begin{center}
-  \hspace{0cm}\includegraphics[width=18cm,angle=0]{plaatjes/cusp-surface-R.pdf} \\ % journal layout preview
+  \hspace{0cm}\includegraphics[width=18cm,angle=0,,bb=0 0 702 702]{plaatjes/cusp-surface-R.pdf} \\ % journal layout preview
 \caption{Cusp surface.}
 \label{fig:cusp-surface}
 \end{center}
@@ -135,7 +135,7 @@ A difficulty that arises when constructing empirically testable catastrophe mode
 
 \begin{figure}[tbp]
 \begin{center}
-  \hspace{0cm}\includegraphics[width=16cm,angle=0]{plaatjes/cuspdens-JSSv2.pdf} \\
+  \hspace{0cm}\includegraphics[width=16cm,angle=0,bb=0 0 584 590]{plaatjes/cuspdens-JSSv2.pdf} \\
 \caption{Shape of cusp density in different regions of the control plane. Bimodality of the density only occurs in the ``bifurcation set'', the cusp shaped shaded area of the control plane.}
 \label{fig:cuspdens}
 \end{center}
@@ -428,7 +428,7 @@ To standardize the data the \code{scale} function of \proglang{R} can be used. T
 
 \begin{figure*}[htbp]
 \begin{center}
-  \hspace{0cm}\includegraphics[width=16cm,angle=0]{plaatjes/attudefitplot.pdf} \\ % journal layout preview
+  \hspace{0cm}\includegraphics[width=16cm,angle=0,bb=0 0 675 621]{plaatjes/attudefitplot.pdf} \\ % journal layout preview
 \caption{Diagnostic plot of fit of attitude data obtained with the \code{plot} method that is available in the package.}
 \label{fig:attitudefit}
 \end{center}
@@ -546,7 +546,7 @@ Some of the estimates differ substantially from the true values. This should how
 , and the correlation between actual $\beta_i$'s and those predicted by the model fit was $.924$. %
 \begin{figure}[bdp]
 \begin{center}
-  \hspace{0cm}\includegraphics[width=14cm,angle=0]{plaatjes/olivabifurcationplot.pdf} \\ % journal layout preview
+  \hspace{0cm}\includegraphics[width=14cm,angle=0,bb=0 0 540 520]{plaatjes/olivabifurcationplot.pdf} \\ % journal layout preview
 \caption{Fit of simulated data generated conform the \citet{Oliva:1987p4496}
 synthetic data example.}
 \label{fig:olivabifplot}
@@ -555,7 +555,7 @@ synthetic data example.}
 
 \begin{figure}[tbdp]
 \begin{center}
-  \hspace{0cm}\includegraphics[width=16cm,angle=0]{plaatjes/oliva3Dplot-new.pdf} \\ % journal layout preview
+  \hspace{0cm}\includegraphics[width=16cm,angle=0,bb=0 0 540 540]{plaatjes/oliva3Dplot-new.pdf} \\ % journal layout preview
 \caption{Three dimensional display of the fit of the \citet{Oliva:1987p4496} %Oliva et al.
 synthetic data example generated with the \code{cusp3d} function.}
 \label{fig:oliva3dplot}
