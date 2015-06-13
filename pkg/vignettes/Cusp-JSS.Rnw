@@ -603,7 +603,7 @@ These considerations will be explored in future improvements of the package.
 
 
 
-\bibliography{cusp_papers_jss.bib}
+\bibliography{cusp_papers_jss}
 
 
 \begin{appendix}
