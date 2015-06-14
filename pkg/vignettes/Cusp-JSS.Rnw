@@ -602,7 +602,6 @@ These considerations will be explored in future improvements of the package.
 	Preparation of this article was sponsored in part by a VENI-grant and a COF-grant from the Netherland Organisation for Scienctific research (NWO).
 
 
-
 \bibliography{cusp_papers_jss}
 
 
