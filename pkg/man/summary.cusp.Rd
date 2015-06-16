@@ -87,7 +87,7 @@ The function \code{summary.cusp} computes and returns a list of summary statisti
 %}
 \seealso{ \code{\link{cusp}}, \code{\link{cusp.logist}} }
 \examples{
-set.seed(123)
+set.seed(20)
 x1 = runif(150)
 x2 = runif(150)
 z = Vectorize(rcusp)(1, 4*x1-2, 4*x2-1)

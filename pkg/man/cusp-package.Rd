@@ -16,7 +16,7 @@ Version: \tab 2.0\cr
 Date: \tab 2008-02-14\cr
 License: \tab GNU GPL v2 (or higher)\cr
 }
-This package helps fitting Cusp catastrophy models to data, as advanced in Cobb et al. (1985). The main functions are 
+This package helps fitting Cusp catastrophy models to data, as advanced in Cobb et al. (1985). The main functions are
 \tabular{ll}{
     \command{cusp} \tab Fit Cobb's Cusp catastrophe model; see example below.\cr
     \command{summary.cusp} \tab Summary statistics of cusp model fit.\cr
@@ -50,8 +50,9 @@ R. P. P. P. Grasman, H. L. J. van der Maas, \& E-J. Wagenmakers (2009). \emph{Fi
 %\seealso{
 %}
 \examples{
+set.seed(123)
 # fitting cusp to cusp data
-x <- rcusp(100, alpha=0, beta=1) 
+x <- rcusp(100, alpha=0, beta=1)
 fit <- cusp(y ~ x, alpha ~ 1, beta ~ 1)
 print(fit)
 
@@ -79,7 +80,7 @@ while(!fit$OK) # refit if necessary until convergence is OK
 # example 1 from paper
 data(attitudes)
 data(attitudeStartingValues)
-fit.attitudes <- cusp(y ~ Attitude, alpha ~ Orient + Involv, beta ~ Involv, 
+fit.attitudes <- cusp(y ~ Attitude, alpha ~ Orient + Involv, beta ~ Involv,
  data = attitudes, start=attitudeStartingValues)
 
 summary(fit.attitudes)
