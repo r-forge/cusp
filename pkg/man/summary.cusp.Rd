@@ -87,14 +87,14 @@ The function \code{summary.cusp} computes and returns a list of summary statisti
 %}
 \seealso{ \code{\link{cusp}}, \code{\link{cusp.logist}} }
 \examples{
-set.seed(20)
+set.seed(97)
 x1 = runif(150)
 x2 = runif(150)
 z = Vectorize(rcusp)(1, 4*x1-2, 4*x2-1)
 data <- data.frame(x1, x2, z)
 fit <- cusp(y ~ z, alpha ~ x1+x2, beta ~ x1+x2, data)
 print(fit)
-summary(fit, logist=TRUE)
+summary(fit, logist=FALSE) # set logist to TRUE to compare to logistic fit
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
