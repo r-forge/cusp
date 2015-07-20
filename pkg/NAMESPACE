@@ -5,6 +5,7 @@ export(cusp.bifset, cusp.extrema, cusp.logist, cusp, cusp3d, cusp3d.surface, dcu
 
 S3method(confint, cusp)
 S3method(plot, cusp)
+S3method(predict, cusp)
 S3method(print, cusp)
 S3method(print, summary.cusp)
 S3method(summary, cusp)
