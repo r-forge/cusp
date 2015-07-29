@@ -409,7 +409,7 @@ To standardize the data the \code{scale} function of \proglang{R} can be used. T
 \label{tab:summarypars1}
 \end{table}
 
-\begin{table}%[!bdp]
+\begin{table}[!bp]
 \begin{center}
 \begin{tabular}{rrrrr}
 \hline\hline
@@ -456,7 +456,7 @@ In the second example we use the model specified by \citeA{Oliva:1987p4496} to d
 For testing purposes, \citeauthor{Oliva:1987p4496}
 did not add noise to any of the variables, and hence, the data perfectly comply with their implicit regression equation \eqref{eq:cuspeq}.
 
-\begin{table}%[!tdp]
+\begin{table}[!tp]
 \begin{center}
 \renewcommand{\baselinestretch}{1}\normalsize
 \begin{tabular}{lrrrr}
@@ -525,7 +525,7 @@ R> oliva.fit <- cusp(y ~ z1 + z2 - 1,
 \end{CodeChunk}
 Note that in the model there are no intercept coefficients; this is signified in the \code{cusp} call by the \code{-1} added to the formula's (see the formula section of the \proglang{R} Manual, \citeNP{Rmanual} for details). The data are stored in the data frame \code{oliva} in this case. The result from \code{summary(oliva.fit, logist = TRUE)} is displayed in the upper part of Table~\ref{tab:olivapars}.
 
-\begin{table}%[tdp]
+\begin{table}[tp]
 \begin{center}
 \begin{tabular}{rrrrr}
 \hline\hline
@@ -544,7 +544,7 @@ Cusp model   &0.7821 &  80.60 &105.93 &116.93 \\
 
 Some of the estimates differ substantially from the true values. This should however not be too surprising given that there are 9 estimated parameters and only 50 observations, yielding a ratio of $55/9 \approx 5.5$ observations per parameter. Six coefficients differ significantly from zero: $a_{x1}$, $a_{x2}$, $b_{y1}$, $b_{y3}$, and both $w_{z1}$ and $w_{z2}$. Using \code{confint} to calculate confidence intervals, we obtain for $a_{x1}$, $a_{x2}$, $b_{y1}$, $b_{y3}$, $w_{z1}$ and $w_{z2}$  95\% confidence intervals of respectively $(-1.26, -0.3979)$, $(0.2864, 1.0676)$, $(0.1749, 0.7197)$, $(0.5658, 1.07)$, $(0.4074, 0.589)$ and $(1.333, 1.669)$, which all neatly cover the true values. The same confidence interval for $b_{y4}$  however, is $(-0.4271, 0.134)$, which does not contain the true value. This may indicate that the estimator is biased. Indeed \citeA{Hartelman:1997p4503} showed in simulations that the estimators are in fact biased. The control factors ($\alpha_i$'s and $\beta_i$'s) were however recovered quite decently: Correlations between the actual $\alpha_i$'s and those predicted by the model fit (which can be obtained with the function \code{predict}) was $.996$%
 , and the correlation between actual $\beta_i$'s and those predicted by the model fit was $.924$. %
-\begin{figure} %[bdp]
+\begin{figure}[bp]
 \begin{center}
   \hspace{0cm}\includegraphics[width=14cm,angle=0,viewport=0 0 540 520]{plaatjes/olivabifurcationplot.pdf} \\ % journal layout preview
 \caption{Fit of simulated data generated conform the \citet{Oliva:1987p4496}

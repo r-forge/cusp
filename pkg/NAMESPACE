@@ -1,4 +1,8 @@
 useDynLib(cusp)
+import(stats)
+import(graphics)
+import(grDevices)
+import(utils)
 
 export(cusp.bifset, cusp.extrema, cusp.logist, cusp, cusp3d, cusp3d.surface, dcusp, draw.cusp.bifset, pcusp,
        plotCuspBifurcation, plotCuspResidfitted, plotCuspDensities, qcusp, rcusp)

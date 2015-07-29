@@ -1,7 +1,11 @@
 Package: cusp
 Type: Package
 Title: Cusp-Catastrophe Model Fitting Using Maximum Likelihood
-Version: 2.3.2
+Version: 2.3.3
+Imports: stats,
+         graphics,
+         grDevices,
+         utils
 Author: Raoul P. P. P. Grasman [aut, cre, cph]
 Maintainer: Raoul Grasman <rgrasman@uva.nl>
 LazyData: yes
